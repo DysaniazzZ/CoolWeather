@@ -3,7 +3,6 @@ package com.dysania.coolweather.ui;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.View;
 import android.widget.TextView;
 
 import com.dysania.coolweather.R;
