@@ -16,7 +16,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"
-        android:background="@drawable/ic_arrow_back"
+        android:background="@drawable/ic_back"
         android:visibility="gone"/>
 
     <Button

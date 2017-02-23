@@ -6,6 +6,7 @@
 
     <color name="colorBgWhite_ff">#FFFFFF</color>
     <color name="colorBgBlack_t8">#88000000</color>
+    <color name="colorBgOrange_fd">#FD9345</color>
 
     <color name="colorTextBlack_00">#000000</color>
     <color name="colorTextWhite_ff">#FFFFFF</color>
