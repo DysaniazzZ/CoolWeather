@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 /**
  * Created by DysaniazzZ on 22/02/2017.
+ * JSON解析工具类
  */
 public class JsonUtil {
 

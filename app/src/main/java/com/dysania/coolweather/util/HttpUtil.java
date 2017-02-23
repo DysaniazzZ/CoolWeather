@@ -6,6 +6,7 @@ import okhttp3.Request;
 
 /**
  * Created by DysaniazzZ on 22/02/2017.
+ * Http请求工具类
  */
 public class HttpUtil {
 

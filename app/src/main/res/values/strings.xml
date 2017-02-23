@@ -5,4 +5,11 @@
     <string name="splash_this_date">%1$s，%2$s</string>
     <string name="splash_app_introduce">气象尽在掌中</string>
     <string name="splash_app_version">%1$s&#160;%2$s</string>
+
+    <!--选择地区页面-->
+    <string name="area_choose_area">选择地区</string>
+    <string name="area_load_error">加载地区失败</string>
+
+    <string name="network_is_loading">加载中...</string>
+    <string name="network_load_error">加载失败</string>
 </resources>

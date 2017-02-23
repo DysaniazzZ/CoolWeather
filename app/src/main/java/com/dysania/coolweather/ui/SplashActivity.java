@@ -63,7 +63,7 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onFinish() {
-                HomeActivity.actionStart(mContext);
+                AreaActivity.actionStart(mContext);
                 mCountDownTimer.cancel();
                 finish();
             }

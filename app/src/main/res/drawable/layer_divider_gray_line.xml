@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--ListView的divider-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@color/colorDividerGray_f7"
+        android:left="@dimen/primary_margin"
+        android:right="@dimen/primary_margin"/>
+</layer-list>
