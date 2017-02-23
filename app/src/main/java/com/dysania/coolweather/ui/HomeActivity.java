@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -36,6 +37,8 @@ import okhttp3.Response;
  */
 public class HomeActivity extends BaseActivity {
 
+    @BindView(R.id.fl_weather_root)
+    FrameLayout mFlWeatherRoot;
     @BindView(R.id.sv_weather_layout)
     ScrollView mSvWeatherLayout;
     @BindView(R.id.ll_weather_error)
@@ -81,7 +84,6 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_home);
         mUnbinder = ButterKnife.bind(this);
         initData();
-        initView();
     }
 
     private void initData() {
@@ -98,15 +100,6 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-    private void initView() {
-        mBtnTitleLeft.setVisibility(View.VISIBLE);
-        mTvTitleRight.setVisibility(View.VISIBLE);
-        mVTitleDivider.setVisibility(View.GONE);
-        mBtnTitleLeft.setBackgroundResource(R.drawable.ic_menu);
-        mTvTitleText.setTextColor(getResources().getColor(R.color.colorTextWhite_ff));
-        mTvTitleRight.setTextColor(getResources().getColor(R.color.colorTextWhite_ff));
-    }
-
     private void requestWeather(final String weatherId) {
         String weatherUrl = IAppConstant.WEATHER_URL + "?cityid=" + weatherId + "&key=" + IAppConstant.WEATHER_KEY;
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
@@ -117,6 +110,7 @@ public class HomeActivity extends BaseActivity {
                     public void run() {
                         mSvWeatherLayout.setVisibility(View.GONE);
                         mLlWeatherError.setVisibility(View.VISIBLE);
+                        mFlWeatherRoot.setBackgroundColor(getResources().getColor(R.color.colorBgWhite_ff));
                         UIUtil.createToast(mContext, R.string.network_load_error);
                     }
                 });
@@ -143,6 +137,15 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void showWeather(Weather weather) {
+        mSvWeatherLayout.setVisibility(View.VISIBLE);
+        mBtnTitleLeft.setVisibility(View.VISIBLE);
+        mTvTitleRight.setVisibility(View.VISIBLE);
+        mVTitleDivider.setVisibility(View.GONE);
+        mBtnTitleLeft.setBackgroundResource(R.drawable.ic_menu);
+        mTvTitleText.setTextColor(getResources().getColor(R.color.colorTextWhite_ff));
+        mTvTitleRight.setTextColor(getResources().getColor(R.color.colorTextWhite_ff));
+        mFlWeatherRoot.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
         mTvTitleText.setText(cityName);
