@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dysania.coolweather.R;
 import com.dysania.coolweather.base.BaseActivity;
 import com.dysania.coolweather.constant.IAppConstant;
@@ -39,6 +41,8 @@ public class HomeActivity extends BaseActivity {
 
     @BindView(R.id.fl_weather_root)
     FrameLayout mFlWeatherRoot;
+    @BindView(R.id.iv_weather_bg)
+    ImageView mIvWeatherBg;
     @BindView(R.id.sv_weather_layout)
     ScrollView mSvWeatherLayout;
     @BindView(R.id.ll_weather_error)
@@ -179,6 +183,28 @@ public class HomeActivity extends BaseActivity {
         mTvWeatherComfort.setText(getString(R.string.weather_comfort_info, weather.suggestion.comfort.info));
         mTvWeatherWash.setText(getString(R.string.weather_wash_info, weather.suggestion.carWash.info));
         mTvWeatherSport.setText(getString(R.string.weather_sport_info, weather.suggestion.sport.info));
+
+        loadBackground();
+    }
+
+    private void loadBackground() {
+        HttpUtil.sendOkHttpRequest(IAppConstant.BACKGROUND_URL, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String backgroundPic = response.body().string();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Glide.with(mContext).load(backgroundPic).into(mIvWeatherBg);
+                    }
+                });
+            }
+        });
     }
 
     @Override

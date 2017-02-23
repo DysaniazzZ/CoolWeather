@@ -9,4 +9,5 @@ public interface IAppConstant {
 
     String AREA_URL = "http://guolin.tech/api/china";
     String WEATHER_URL = "http://guolin.tech/api/weather";
+    String BACKGROUND_URL = "http://guolin.tech/api/bing_pic";
 }

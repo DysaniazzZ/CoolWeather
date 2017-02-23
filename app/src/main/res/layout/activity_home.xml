@@ -5,6 +5,12 @@
              android:layout_height="match_parent"
              android:background="@color/colorBgWhite_ff">
 
+    <ImageView
+        android:id="@+id/iv_weather_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+
     <ScrollView
         android:id="@+id/sv_weather_layout"
         android:layout_width="match_parent"
