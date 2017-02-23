@@ -11,12 +11,18 @@
     <string name="area_load_error">加载地区失败</string>
 
     <!--天气预报页面-->
+    <string name="weather_now_temperature">%1$s℃</string>
     <string name="weather_weather_forecast">预报</string>
+    <string name="weather_temperature_diff">%1$s℃&#160;~&#160;%2$s℃</string>
     <string name="weather_air_quality">空气质量</string>
     <string name="weather_aqi_index">AQI指数</string>
     <string name="weather_pm25_index">PM2.5指数</string>
     <string name="weather_life_suggestion">生活建议</string>
+    <string name="weather_comfort_info">舒适度：%1$s</string>
+    <string name="weather_wash_info">洗车指数：%1$s</string>
+    <string name="weather_sport_info">运动建议：%1$s</string>
     <string name="weather_empty_data">暂无</string>
+    <string name="weather_load_error">加载天气失败</string>
 
     <!--网络请求-->
     <string name="network_is_loading">加载中...</string>

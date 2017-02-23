@@ -2,9 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="?attr/colorPrimary">
+             android:background="?attr/colorAccent">
 
     <ScrollView
+        android:id="@+id/sv_weather_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -27,5 +28,27 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_weather_error"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:src="@drawable/ic_error"/>
+
+        <TextView
+            style="@style/PrimaryText.20sp"
+            android:layout_marginTop="@dimen/primary_margin"
+            android:text="@string/weather_load_error"
+            android:textColor="@color/colorTextGray_66"/>
+
+    </LinearLayout>
 
 </FrameLayout>

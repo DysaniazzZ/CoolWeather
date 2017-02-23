@@ -113,6 +113,10 @@ public class AreaFragment extends BaseFragment {
                 } else if (mCurrentLevel == LEVEL_CITY) {
                     mSelectedCity = mCityList.get(position);
                     queryCounties();
+                } else if (mCurrentLevel == LEVEL_COUNTY) {
+                    String weatherId = mCountyList.get(position).getWeatherId();
+                    HomeActivity.actionStart(getContext(), weatherId);
+                    getActivity().finish();
                 }
             }
         });
