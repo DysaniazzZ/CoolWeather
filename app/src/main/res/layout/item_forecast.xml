@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/primary_margin"
+              android:background="@drawable/shape_fill_black_rect"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/PrimaryText.20sp"
+        android:layout_marginLeft="@dimen/primary_margin"
+        android:layout_marginTop="@dimen/primary_margin"
+        android:text="@string/weather_weather_forecast"
+        android:textColor="@color/colorTextWhite_ff"/>
+
+    <LinearLayout
+        android:id="@+id/ll_weather_forecast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+</LinearLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/primary_margin"
+              android:background="@drawable/shape_fill_black_rect"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/PrimaryText.20sp"
+        android:layout_marginLeft="@dimen/primary_margin"
+        android:layout_marginTop="@dimen/primary_margin"
+        android:text="@string/weather_air_quality"
+        android:textColor="@color/colorTextWhite_ff"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/primary_margin">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_weather_aqi"
+                    style="@style/PrimaryText"
+                    android:textColor="@color/colorTextWhite_ff"
+                    android:textSize="40sp"/>
+
+                <TextView
+                    style="@style/PrimaryText"
+                    android:text="@string/weather_aqi_index"
+                    android:textColor="@color/colorTextWhite_ff"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_weather_pm25"
+                    style="@style/PrimaryText"
+                    android:textColor="@color/colorTextWhite_ff"
+                    android:textSize="40sp"/>
+
+                <TextView
+                    style="@style/PrimaryText"
+                    android:text="@string/weather_pm25_index"
+                    android:textColor="@color/colorTextWhite_ff"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

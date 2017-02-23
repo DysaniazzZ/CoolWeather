@@ -2,4 +2,5 @@
 <resources>
     <dimen name="primary_margin">12dp</dimen>
     <dimen name="primary_padding">12dp</dimen>
+    <dimen name="primary_little_radius">3dp</dimen>
 </resources>

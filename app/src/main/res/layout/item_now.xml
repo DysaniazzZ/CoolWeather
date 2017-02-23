@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/primary_margin"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_weather_temperature"
+        style="@style/PrimaryText"
+        android:layout_gravity="end"
+        android:textColor="@color/colorTextWhite_ff"
+        android:textSize="60sp"/>
+
+    <TextView
+        android:id="@+id/tv_weather_condition"
+        style="@style/PrimaryText.20sp"
+        android:layout_gravity="end"
+        android:textColor="@color/colorTextWhite_ff"/>
+
+</LinearLayout>
