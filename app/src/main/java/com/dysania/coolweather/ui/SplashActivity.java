@@ -3,12 +3,15 @@ package com.dysania.coolweather.ui;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.dysania.coolweather.R;
 import com.dysania.coolweather.base.BaseActivity;
+import com.dysania.coolweather.constant.IAppConstant;
 import com.dysania.coolweather.util.DateUtil;
 import com.dysania.coolweather.util.DeviceUtil;
+import com.dysania.coolweather.util.SPUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,7 +66,7 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onFinish() {
-                AreaActivity.actionStart(mContext);
+                goToNextActivity();
                 mCountDownTimer.cancel();
                 finish();
             }
@@ -74,6 +77,17 @@ public class SplashActivity extends BaseActivity {
     public void onClick() {
         //点击了跳过
         mCountDownTimer.onFinish();
+    }
+
+    private void goToNextActivity() {
+        //判断是否有缓存
+        String weatherCache = SPUtil.getString(mContext, IAppConstant.WEATHER_CACHE, null);
+        String weatherIdCache = SPUtil.getString(mContext, IAppConstant.WEATHER_ID, null);
+        if(!TextUtils.isEmpty(weatherCache) && !TextUtils.isEmpty(weatherIdCache))  {
+            WeatherActivity.actionStart(mContext, weatherIdCache);
+        } else {
+            AreaActivity.actionStart(mContext);
+        }
     }
 
     @Override

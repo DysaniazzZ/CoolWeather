@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -36,6 +38,9 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+import static com.dysania.coolweather.constant.IAppConstant.WEATHER_ID;
+import static com.dysania.coolweather.constant.IAppConstant.WEATHER_CACHE;
+
 /**
  * Created by DysaniazzZ on 21/02/2017.
  * 天气页
@@ -46,6 +51,8 @@ public class WeatherActivity extends BaseActivity {
     FrameLayout mFlWeatherRoot;
     @BindView(R.id.iv_weather_bg)
     ImageView mIvWeatherBg;
+    @BindView(R.id.dl_weather_layout)
+    DrawerLayout mDlWeatherLayout;
     @BindView(R.id.srl_weather_layout)
     SwipeRefreshLayout mSrlWeatherLayout;
     @BindView(R.id.sv_weather_layout)
@@ -79,8 +86,6 @@ public class WeatherActivity extends BaseActivity {
 
     private Unbinder mUnbinder;
     private String mWeatherId;
-    private static final String WEATHER_ID = "weather_id";
-    private static final String WEATHER_CACHE = "weather_cache";
 
     public static void actionStart(Context context, String weatherId) {
         Intent intent = new Intent(context, WeatherActivity.class);
@@ -127,7 +132,7 @@ public class WeatherActivity extends BaseActivity {
         });
     }
 
-    private void requestWeather(final String weatherId) {
+    public void requestWeather(final String weatherId) {
         String weatherUrl = IAppConstant.WEATHER_URL + "?cityid=" + weatherId + "&key=" + IAppConstant.WEATHER_KEY;
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
             @Override
@@ -174,6 +179,12 @@ public class WeatherActivity extends BaseActivity {
         mTvTitleText.setTextColor(getResources().getColor(R.color.colorTextWhite_ff));
         mTvTitleRight.setTextColor(getResources().getColor(R.color.colorTextWhite_ff));
         mFlWeatherRoot.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        mBtnTitleLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDlWeatherLayout.openDrawer(GravityCompat.START);
+            }
+        });
 
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];

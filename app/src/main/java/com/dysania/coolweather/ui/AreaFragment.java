@@ -115,8 +115,15 @@ public class AreaFragment extends BaseFragment {
                     queryCounties();
                 } else if (mCurrentLevel == LEVEL_COUNTY) {
                     String weatherId = mCountyList.get(position).getWeatherId();
-                    WeatherActivity.actionStart(getContext(), weatherId);
-                    getActivity().finish();
+                    if(getActivity() instanceof AreaActivity) {
+                        WeatherActivity.actionStart(getContext(), weatherId);
+                        getActivity().finish();
+                    } else if(getActivity() instanceof WeatherActivity) {
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.mDlWeatherLayout.closeDrawers();
+                        activity.mSrlWeatherLayout.setRefreshing(true);
+                        activity.requestWeather(weatherId);
+                    }
                 }
             }
         });
