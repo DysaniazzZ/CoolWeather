@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,14 +38,16 @@ import okhttp3.Response;
 
 /**
  * Created by DysaniazzZ on 21/02/2017.
- * 主页
+ * 天气页
  */
-public class HomeActivity extends BaseActivity {
+public class WeatherActivity extends BaseActivity {
 
     @BindView(R.id.fl_weather_root)
     FrameLayout mFlWeatherRoot;
     @BindView(R.id.iv_weather_bg)
     ImageView mIvWeatherBg;
+    @BindView(R.id.srl_weather_layout)
+    SwipeRefreshLayout mSrlWeatherLayout;
     @BindView(R.id.sv_weather_layout)
     ScrollView mSvWeatherLayout;
     @BindView(R.id.ll_weather_error)
@@ -75,11 +78,12 @@ public class HomeActivity extends BaseActivity {
     TextView mTvWeatherSport;
 
     private Unbinder mUnbinder;
+    private String mWeatherId;
     private static final String WEATHER_ID = "weather_id";
     private static final String WEATHER_CACHE = "weather_cache";
 
     public static void actionStart(Context context, String weatherId) {
-        Intent intent = new Intent(context, HomeActivity.class);
+        Intent intent = new Intent(context, WeatherActivity.class);
         intent.putExtra(WEATHER_ID, weatherId);
         context.startActivity(intent);
     }
@@ -88,7 +92,7 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStatusBarBg();
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_weather);
         mUnbinder = ButterKnife.bind(this);
         initData();
     }
@@ -102,17 +106,25 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initData() {
-        String weatherId = getIntent().getStringExtra(WEATHER_ID);
+        mWeatherId = getIntent().getStringExtra(WEATHER_ID);
         String weatherCache = SPUtil.getString(mContext, WEATHER_CACHE, null);
         String weatherIdCache = SPUtil.getString(mContext, WEATHER_ID, null);
-        if (!TextUtils.isEmpty(weatherCache) && weatherId.equals(weatherIdCache)) {
+        if (!TextUtils.isEmpty(weatherCache) && mWeatherId.equals(weatherIdCache)) {
             //有缓存，直接解析
             Weather weather = JsonUtil.handleWeatherResponse(weatherCache);
             showWeather(weather);
         } else {
             //无缓存，联网获取
-            requestWeather(weatherId);
+            requestWeather(mWeatherId);
         }
+        mSrlWeatherLayout.setColorSchemeResources(R.color.colorAccent);     //设置下拉刷新条的颜色
+        mSrlWeatherLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //联网获取最新天气
+                requestWeather(mWeatherId);
+            }
+        });
     }
 
     private void requestWeather(final String weatherId) {
@@ -127,6 +139,7 @@ public class HomeActivity extends BaseActivity {
                         mLlWeatherError.setVisibility(View.VISIBLE);
                         mFlWeatherRoot.setBackgroundColor(getResources().getColor(R.color.colorBgWhite_ff));
                         UIUtil.createToast(mContext, R.string.network_load_error);
+                        mSrlWeatherLayout.setRefreshing(false);
                     }
                 });
             }
@@ -145,6 +158,7 @@ public class HomeActivity extends BaseActivity {
                         } else {
                             UIUtil.createToast(mContext, R.string.network_load_error);
                         }
+                        mSrlWeatherLayout.setRefreshing(false);
                     }
                 });
             }
