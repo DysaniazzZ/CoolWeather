@@ -53,5 +53,11 @@ proguard/
 # Android Studio captures folder
 /captures
 
+#下面的内容在正式项目中不要提交到仓库
+# 保存签名证书
 # Keystore files
-*.jks
+# app/key/*.jks
+
+# 保存签名证书相关的信息
+# Gradle configuration file
+# gradle.properties

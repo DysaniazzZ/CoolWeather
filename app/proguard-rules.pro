@@ -41,6 +41,7 @@
 
 ## --- OkHttp Start ---
 -dontwarn okhttp3.**
+-dontwarn okio.**
 ## --- OkHttp End ---
 
 
