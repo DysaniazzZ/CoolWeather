@@ -38,8 +38,8 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import static com.dysania.coolweather.constant.IAppConstant.WEATHER_ID;
 import static com.dysania.coolweather.constant.IAppConstant.WEATHER_CACHE;
+import static com.dysania.coolweather.constant.IAppConstant.WEATHER_ID;
 
 /**
  * Created by DysaniazzZ on 21/02/2017.
@@ -142,6 +142,7 @@ public class WeatherActivity extends BaseActivity {
                     public void run() {
                         mSvWeatherLayout.setVisibility(View.GONE);
                         mLlWeatherError.setVisibility(View.VISIBLE);
+                        mIvWeatherBg.setVisibility(View.GONE);
                         mFlWeatherRoot.setBackgroundColor(getResources().getColor(R.color.colorBgWhite_ff));
                         UIUtil.createToast(mContext, R.string.network_load_error);
                         mSrlWeatherLayout.setRefreshing(false);
@@ -172,6 +173,8 @@ public class WeatherActivity extends BaseActivity {
 
     private void showWeather(Weather weather) {
         mSvWeatherLayout.setVisibility(View.VISIBLE);
+        mLlWeatherError.setVisibility(View.GONE);
+        mIvWeatherBg.setVisibility(View.VISIBLE);
         mBtnTitleLeft.setVisibility(View.VISIBLE);
         mTvTitleRight.setVisibility(View.VISIBLE);
         mVTitleDivider.setVisibility(View.GONE);
