@@ -37,14 +37,10 @@
         app:layout_heightPercent="33%">
 
         <TextView
-            android:id="@+id/tv_splash_date"
+            android:id="@+id/tv_splash_welcome"
             style="@style/PrimaryText.16sp"
-            android:textColor="@color/colorTextGray_66"/>
-
-        <TextView
-            android:id="@+id/tv_splash_hello"
-            style="@style/PrimaryText.16sp"
-            android:layout_marginTop="5dp"
+            android:lineSpacingExtra="5dp"
+            android:textAlignment="center"
             android:textColor="@color/colorTextGray_66"/>
 
     </LinearLayout>
