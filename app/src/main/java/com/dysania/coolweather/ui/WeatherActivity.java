@@ -132,6 +132,10 @@ public class WeatherActivity extends BaseActivity {
         });
     }
 
+    public void setWeatherId(String weatherId) {
+        this.mWeatherId = weatherId;
+    }
+
     public void requestWeather(final String weatherId) {
         String weatherUrl = IAppConstant.WEATHER_URL + "?cityid=" + weatherId + "&key=" + IAppConstant.WEATHER_KEY;
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {

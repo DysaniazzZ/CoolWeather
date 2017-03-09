@@ -122,6 +122,7 @@ public class AreaFragment extends BaseFragment {
                         WeatherActivity activity = (WeatherActivity) getActivity();
                         activity.mDlWeatherLayout.closeDrawers();
                         activity.mSrlWeatherLayout.setRefreshing(true);
+                        activity.setWeatherId(weatherId);
                         activity.requestWeather(weatherId);
                     }
                 }
