@@ -1,5 +1,8 @@
 package com.dysania.coolweather.ui;
 
+import static com.dysania.coolweather.constant.IAppConstant.WEATHER_CACHE;
+import static com.dysania.coolweather.constant.IAppConstant.WEATHER_ID;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,7 +20,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import com.bumptech.glide.Glide;
 import com.dysania.coolweather.R;
 import com.dysania.coolweather.base.BaseActivity;
@@ -28,18 +33,10 @@ import com.dysania.coolweather.util.HttpUtil;
 import com.dysania.coolweather.util.JsonUtil;
 import com.dysania.coolweather.util.SPUtil;
 import com.dysania.coolweather.util.UIUtil;
-
 import java.io.IOException;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
-
-import static com.dysania.coolweather.constant.IAppConstant.WEATHER_CACHE;
-import static com.dysania.coolweather.constant.IAppConstant.WEATHER_ID;
 
 /**
  * Created by DysaniazzZ on 21/02/2017.
@@ -207,11 +204,22 @@ public class WeatherActivity extends BaseActivity {
         for (Forecast forecast : weather.forecastList) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.item_forecast_detail, mLlWeatherForecast, false);
             TextView dateText = (TextView) view.findViewById(R.id.tv_weather_item_date);
-            TextView conditionText = (TextView) view.findViewById(R.id.tv_weather_item_condition);
-            TextView diffText = (TextView) view.findViewById(R.id.tv_weather_item_diff);
+            TextView conditionDiffText = (TextView) view.findViewById(R.id.tv_weather_item_condition);
+            TextView temperatureDiffText = (TextView) view.findViewById(R.id.tv_weather_item_diff);
             dateText.setText(forecast.date);
-            conditionText.setText(forecast.more.info);
-            diffText.setText(getString(R.string.weather_temperature_diff, forecast.temperature.min, forecast.temperature.max));
+            String dayInfo = forecast.more.dayInfo;
+            String nightInfo = forecast.more.nightInfo;
+            try {
+                String weatherCondition;
+                if (dayInfo.equals(nightInfo)) {
+                    weatherCondition = dayInfo;
+                } else {
+                    weatherCondition = getString(R.string.weather_condition_diff, forecast.more.dayInfo, forecast.more.nightInfo);
+                }
+                conditionDiffText.setText(weatherCondition);
+            } catch (Exception e) {
+            }
+            temperatureDiffText.setText(getString(R.string.weather_temperature_diff, forecast.temperature.min, forecast.temperature.max));
             mLlWeatherForecast.addView(view);
         }
 

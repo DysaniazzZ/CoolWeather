@@ -14,6 +14,7 @@
     <string name="weather_now_temperature">%1$s℃</string>
     <string name="weather_weather_forecast">预报</string>
     <string name="weather_temperature_diff">%1$s℃&#160;~&#160;%2$s℃</string>
+    <string name="weather_condition_diff">%1$s&#160;-&#160;%2$s</string>
     <string name="weather_air_quality">空气质量</string>
     <string name="weather_aqi_index">AQI指数</string>
     <string name="weather_pm25_index">PM2.5指数</string>
