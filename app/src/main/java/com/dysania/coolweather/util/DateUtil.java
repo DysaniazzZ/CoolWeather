@@ -3,6 +3,7 @@ package com.dysania.coolweather.util;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by DysaniazzZ on 21/02/2017.
@@ -31,7 +32,7 @@ public class DateUtil {
      */
     public static String getWeekString(long timeMills) {
         Date date = new Date(timeMills);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E", Locale.CHINA);
         String weekString = simpleDateFormat.format(date);
         return weekString;
     }
